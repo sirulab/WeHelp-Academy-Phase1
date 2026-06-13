@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment - Week 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-title">My Website</div>
+        
+        <div class="burger-icon" id="burger-btn">&#9776;</div>
+
+        <div class="nav-menu" id="nav-menu">
+            <div class="close-icon" id="close-btn">&times;</div>
+            <ul><a href="">Item 1</a></ul>
+            <ul><a href="">Item 2</a></ul>
+            <ul><a href="">Item 3</a></ul>
+            <ul><a href="">Item 4</a></ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Welcome to MyHome</h1>
+    </header>
+
+    <main class="main-content">
+        
+        <section class="bars">
+            <div class="bar">
+                <img src="Placeholder Image.png">
+                <p>Promotion 1</p>
+            </div>
+            <div class="bar">
+                <img src="Placeholder Image.png">
+                <p>Promotion 2</p>
+            </div>
+            <div class="bar">
+                <img src="Placeholder Image.png">
+                <p>Promotion 3</p>
+            </div>
+        </section>
+
+        <section class="contain-blocks">
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 1</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 2</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 3</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 4</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 5</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 6</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 7</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 8</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 9</div></div>
+            <div class="block"><img src="Placeholder Image.png"><div class="star">&#9733;</div><div class="text-section">Title 10</div></div>
+        </section>
+        
+    </main>
+    <script>
+        const burgerBtn = document.getElementById('burger-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        burgerBtn.addEventListener('click', function() {
+            navMenu.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

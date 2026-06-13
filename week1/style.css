@@ -1,0 +1,210 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 20px;
+    font-family: Times New Roman;
+    overflow-x: hidden; /*不會有捲軸*/
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /*center vs. space-around*/
+    align-items: center;
+    padding: 10px 20px;
+}
+
+    .nav-title {
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .nav-menu {
+        display: flex;
+        text-align: right;
+        gap: 20px;
+    }
+
+    .menu-toggle, .burger-icon, .close-icon {
+        display: none; /*不出現，手機板才出現*/
+    }
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    height: 250px;
+}
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+.main-content {
+    display: flex;
+    margin: 40px auto; /*左右*/
+    flex-direction: column;
+    gap: 20px;
+}
+
+    .bars {
+        display: grid;
+        gap: 20px;
+    }
+
+        .bar {
+            align-items: center;
+            background-color: lightblue;
+            display: flex;
+        }
+
+        .bar img {
+            width: 80px;
+            height: 100%;
+            object-fit: cover; /*圖片不變形*/
+            margin-right: 20px;
+        }
+
+    .contain-blocks {
+        display: grid;
+        gap: 20px; 
+    }
+
+        .block {
+            position: relative;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .block img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            font-size: 20px;
+            color: yellow;
+        }
+
+        .text-section {
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 0; /**/
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 2;
+            display: flex;
+            padding: 10px 0;
+        }
+
+@media (min-width: 1201px) {
+    .main-content {
+        width: 1200px;
+    }
+
+    .bars {
+        grid-template-columns: 2fr 1fr; 
+    }
+    .bar:nth-child(1) {
+        grid-column: span 2; /*橫跨兩格; grid-column vs. grid-row*/
+        height: 50px;
+    }
+    .bar:nth-child(2), .bar:nth-child(3) {
+        height: 50px;
+    }
+
+    .contain-blocks {
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        grid-auto-rows: 200px; /*不用一個一個寫*/
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 601px) {
+    .main-content {
+        width: 90%;
+    }
+
+    .bars {
+        grid-template-columns: 1fr 1fr;
+    }
+    .bar:nth-child(3) {
+        grid-column: span 2;
+    }
+    .bar img {
+        height: 50px;
+    }
+
+    .contain-blocks {
+        grid-template-columns: repeat(4, 1fr); /*不用一個一個寫*/
+        grid-auto-rows: 200px;
+    }
+
+    .block:nth-child(9), .block:nth-child(10) {
+        grid-column: span 2;
+    }
+}
+
+/*手機尺寸*/
+
+@media (max-width: 600px) {
+    .main-content {
+        width: 90%;
+    }
+
+    .bars {
+        grid-template-columns: 1fr;
+    }
+
+    .contain-blocks {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 200px;
+    }
+
+    .burger-icon {
+        display: block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    .nav-menu {
+        position: fixed; /*relative, absolute, fixed*/
+        top: 0;
+        right: -100%;
+        width: 50%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start; /*flex-start vs. center*/
+        padding: 20px; 
+        z-index: 10;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .close-icon {
+        display: block;
+        font-size: 20px;
+        align-self: flex-end;
+        margin-bottom: 20px;
+    }
+}
