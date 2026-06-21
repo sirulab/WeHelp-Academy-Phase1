@@ -143,8 +143,7 @@ function func2(ss, start, end, criteria) {
         return;
     }
 
-    var diff_min = Infinity;
-    var best; //需要先宣告
+    var candidates = [];
 
     for (var i = 0; i < ss.length; i++) {
         var s = ss[i];
@@ -162,19 +161,23 @@ function func2(ss, start, end, criteria) {
         if (match) {
             if (cf !== "name") {
                 var diff = Math.abs(val - tv);
-                if (diff < diff_min) {
-                    diff_min = diff;
-                    best = i; 
-                }
-            } else {
-                best = i;
-                break;
+                candidates.push({ diff: diff, service: s }); //格式
+            }
+            else {
+                candidates.push({ diff: 0, service: s });
             }
         }
     }
+    if (candidates.length === 0) {
+        console.log("Sorry");
+        return;
+    }
 
-    if (best >= 0) {
-        var availList = ss[best].timeslot;
+    candidates.sort((a, b) => a.diff - b.diff); //學用一下JS的sort
+
+    for (var i = 0; i < candidates.length; i++) {
+        var s = candidates[i].service;
+        var availList = s.timeslot;
         var canBook = true;
 
         for (var t = start; t < end; t++) {
@@ -189,7 +192,7 @@ function func2(ss, start, end, criteria) {
                 var idx = availList.indexOf(t);
                 availList.splice(idx, 1); 
             }
-            console.log(ss[best].name);
+            console.log(s.name);
             return;
         }
     }
@@ -210,6 +213,7 @@ func2(services, 15, 18, "r>=4.5");    // S1
 func2(services, 16, 18, "r>=4");      // Sorry 
 func2(services, 13, 17, "name=S1");   // Sorry 
 func2(services, 8, 9, "c<=1500");     // S2
+func2(services, 8, 9, "c<=1500");     // add
 
 //task3------------
 console.log("------task3------")

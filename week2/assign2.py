@@ -113,8 +113,7 @@ def func2(ss, start, end, criteria):
     else:
         return print("Sorry")
     
-    diff_min = float('inf')
-    best_name = ""
+    candidates = []
     for s in ss:
         val = s[cf] # value
         is_match = False
@@ -129,29 +128,30 @@ def func2(ss, start, end, criteria):
         if is_match:
             if cf != "name":
                 diff = abs(val - target_value)
-                if diff < diff_min:
-                    diff_min = diff            
-                    best_name = s["name"]
+                candidates.append((diff, s["name"]))
             else:
-                best_name = s["name"]
+                candidates.append((0, s["name"]))
 
-    if best_name == "":
+    if not candidates:
         return print("Sorry")
 
+    candidates.sort()
+
     time_requested = list(range(start, end))
-    avail_list = time_available[best_name]
+    for diff, candi in candidates:
+        avail_list = time_available[candi]
     
-    can_book = True
-    for t in time_requested:
-        if t not in avail_list:
-            can_book = False
-            break
-            
-    if can_book:
+        can_book = True
         for t in time_requested:
-            avail_list.remove(t)
-            time_booked[best_name].append(t)
-        return print(best_name)
+            if t not in avail_list:
+                can_book = False
+                break
+            
+        if can_book:
+            for t in time_requested:
+                avail_list.remove(t)
+                time_booked[candi].append(t)
+            return print(candi)
         
     return print("Sorry")
 
@@ -168,6 +168,7 @@ func2(services, 15, 18, "r>=4.5") # S1
 func2(services, 16, 18, "r>=4") # Sorry
 func2(services, 13, 17, "name=S1") # Sorry
 func2(services, 8, 9, "c<=1500") # S2
+func2(services, 8, 9, "c<=1500") # add
 
 # task3------------
 print("------task3------")
