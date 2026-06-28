@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment - Week 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-title">My Website</div>
+        
+        <div class="burger-icon" id="burger-btn">&#9776;</div>
+
+        <div class="nav-menu" id="nav-menu">
+            <div class="close-icon" id="close-btn">&times;</div>
+            <ul><a href="">Item 1</a></ul>
+            <ul><a href="">Item 2</a></ul>
+            <ul><a href="">Item 3</a></ul>
+            <ul><a href="">Item 4</a></ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Welcome to MyHome</h1>
+    </header>
+    <main class="main-content">
+        
+        <section class="bars" id="bars-container">
+            </section>
+
+        <section class="contain-blocks" id="blocks-container">
+            </section>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <button id="load-more-btn" style="padding: 10px 20px; font-size: 16px; cursor: pointer; display: none;">Load More</button>
+        </div>
+        
+    </main>
+    <script>
+        const burgerBtn = document.getElementById('burger-btn'); // 要換成let嗎?
+        const closeBtn = document.getElementById('close-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        burgerBtn.addEventListener('click', function() {
+            navMenu.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
+        
+        // 資料json -> 名+url -> renderAttractions
+        let allAttractions = [];
+        let currentIndex = 0;
+
+        function getData(){fetch("https://cwpeng.github.io/test/assignment-3-1").then(function(res1){ 
+                return res1.json(); 
+            }).then(function(data1){fetch("https://cwpeng.github.io/test/assignment-3-2").then(function(res2){ 
+                    return res2.json(); 
+                }).then(function(data2) {
+                    let textData = data1.rows; 
+                    let picData = data2.rows;
+                    let hostUrl = data2.host;
+
+                    for (let i = 0; i < textData.length; i++) {
+                        let item = textData[i];                       
+                        for (let j = 0; j < picData.length; j++) {
+                            if (picData[j].serial === item.serial) {
+                                matchPic = picData[j];
+                                break; // 注意break
+                            }
+                        }
+
+                        if (matchPic.pics) {
+                            let picString = matchPic.pics;
+                            let first = picString.split(".jpg")[0];
+                            imageUrl = hostUrl + first + ".jpg"; 
+                        }
+
+                        allAttractions.push({
+                            stitle: item.sname, 
+                            imageUrl: imageUrl
+                        });
+                        
+                    } // for 迴圈
+                    renderAttractions(13);
+                });
+            });
+        }
+
+        function renderAttractions(count) { // currentIndex
+            let barsContainer = document.querySelector("#bars-container");
+            let blocksContainer = document.querySelector("#blocks-container");
+            let loadMoreBtn = document.querySelector("#load-more-btn");
+            
+            let endIndex = currentIndex + count;
+            if (endIndex > allAttractions.length) {
+                endIndex = allAttractions.length;
+            }
+            
+            for (let i = currentIndex; i < endIndex; i++) {
+                let product = allAttractions[i];
+                
+                if (i < 3) {
+                    let barDiv = document.createElement("div");
+                    barDiv.className = "bar";
+                    
+                    let img = document.createElement("img");
+                    img.src = product.imageUrl;
+                    
+                    let p = document.createElement("p");
+                    p.textContent = product.stitle;
+                    
+                    barDiv.appendChild(img);
+                    barDiv.appendChild(p);
+                    barsContainer.appendChild(barDiv);
+                } else {
+                    let blockDiv = document.createElement("div");
+                    blockDiv.className = "block";
+                    
+                    let img = document.createElement("img");
+                    img.src = product.imageUrl;
+                    
+                    let starDiv = document.createElement("div");
+                    starDiv.className = "star"; // 和預設樣式一起嗎?
+                    starDiv.textContent = "★";
+                    
+                    let textDiv = document.createElement("div");
+                    textDiv.className = "text-section";
+                    textDiv.textContent = product.stitle;
+                    
+                    blockDiv.appendChild(img);
+                    blockDiv.appendChild(starDiv);
+                    blockDiv.appendChild(textDiv);
+                    blocksContainer.appendChild(blockDiv);
+                }
+            }
+            
+            currentIndex = endIndex;
+            
+            if (currentIndex >= allAttractions.length) {
+                loadMoreBtn.style.display = "none";
+            } else {
+                loadMoreBtn.style.display = "inline-block";
+            }
+        }
+
+        window.addEventListener('load', getData); 
+        document.querySelector('#load-more-btn').addEventListener('click', function() {
+            renderAttractions(10);
+        });
+    </script>
+</body>
+</html>
