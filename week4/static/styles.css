@@ -1,0 +1,47 @@
+* {
+
+}
+
+body {
+
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(80, 80, 80);
+    color: white;
+    padding: 10px 20px;
+}
+
+.type1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+hr {
+    border: 0;
+    height: 2px; 
+    background-color: #ccc;
+    margin: 20px 0;
+}
