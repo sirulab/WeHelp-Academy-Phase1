@@ -21,7 +21,7 @@ follower_count INT UNSIGNED NOT NULL DEFAULT 0,
 time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
-![預覽結果](attachment/Pasted%20image%20260709234553.png)
+![預覽結果](attachment/Pasted image 260709234553.png)
 
 ### task3
 ###### 1. 插入: 1+4筆資料，並預覽結果(選取全部表格):
