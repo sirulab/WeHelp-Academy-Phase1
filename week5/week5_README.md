@@ -40,35 +40,35 @@ SELECT * FROM member;
 ```
 ![alt text](<attachment/Pasted image 20260709234631.png>)
 
-###### 2. 選取表格: ==依照==時間降序排列
+###### 2. 選取表格: <mark>依照</mark>時間降序排列
 ```mysql
 SELECT * FROM member ORDER BY time DESC;
 ```
 ![alt text](<attachment/Pasted image 20260709234755.png>)
 
-###### 3. 選取表格: ==依照==時間降序排列+選三並從二到四
+###### 3. 選取表格: <mark>依照</mark>時間降序排列+選三並從二到四
 ```mysql
 SELECT * FROM member ORDER BY time DESC LIMIT 3 OFFSET 1;
 ```
 ![alt text](<attachment/Pasted image 20260709234826.png>)
 
-###### 4. 選取表格: ==限制條件==email = "---"
+###### 4. 選取表格: <mark>限制條件</mark>email = "---"
 ```mysql
 SELECT * FROM member WHERE email = "test@test.com";
 ```
 ![alt text](<attachment/Pasted image 20260709234945.png>)
-###### 6.選取表格: ==限制條件==email = "---" 並且 密碼="---"
+###### 6.選取表格: <mark>限制條件</mark>email = "---" 並且 密碼="---"
 ```mysql
 SELECT * FROM member WHERE email = "test@test.com" AND password="test";
 ```
 ![alt text](<attachment/Pasted image 20260709235023.png>)
-###### 5.選取表格: ==限制條件==email 包含 es
+###### 5.選取表格: <mark>限制條件</mark>email 包含 es
 ```mysql
 SELECT * FROM member WHERE name LIKE "%es%";
 ```
 ![alt text](<attachment/Pasted image 20260709234956.png>)
 
-###### 7.更新資料name，==限制條件==email = "---"
+###### 7.更新資料name，<mark>限制條件</mark>email = "---"
 ```mysql
 UPDATE member SET name = "test2" WHERE email = "test@test.com";
 ```
@@ -98,7 +98,7 @@ SELECT SUM(follower_count) FROM member;
 SELECT AVG(follower_count) FROM member;
 ```
 ![alt text](<attachment/Pasted image 20260709235141.png>)
-###### 4. 平均(follower_count)，從==依照==時間降序排列前兩個
+###### 4. 平均(follower_count)，從<mark>依照</mark>時間降序排列前兩個
 ```mysql
 SELECT AVG(follower_count) FROM (
 SELECT follower_count FROM member ORDER BY follower_count DESC
@@ -127,14 +127,14 @@ SELECT message.*, member.name FROM message JOIN member
 ON message.member_id = member.id;
 ```
 ![alt text](<attachment/Pasted image 20260709235312.png>)
-###### 2. 選取表格: message+member.name(sender names)，==限制條件==email = "---"
+###### 2. 選取表格: message+member.name(sender names)，<mark>限制條件</mark>email = "---"
 ```mysql
 SELECT message.*, member.name FROM message JOIN member 
 ON message.member_id = member.id
 WHERE member.email = "test@test.com";
 ```
 ![alt text](<attachment/Pasted image 20260709235406.png>)
-###### 3. 選取表格: avg(like_count)，==限制條件==email = "---"
+###### 3. 選取表格: avg(like_count)，<mark>限制條件</mark>email = "---"
 ```mysql
 SELECT AVG(message.like_count) FROM message JOIN member 
 ON message.member_id = member.id
