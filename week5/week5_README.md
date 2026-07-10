@@ -21,7 +21,7 @@ follower_count INT UNSIGNED NOT NULL DEFAULT 0,
 time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
-![alt text](<attachment/Pasted image 260709234553.png>)
+![alt text](<attachment/Pasted image 20260709234553.png>)
 
 ### task3
 ###### 1. 插入: 1+4筆資料，並預覽結果(選取全部表格):
@@ -38,35 +38,35 @@ VALUES
 --
 SELECT * FROM member;
 ```
-![alt text](<attachment/Pasted image 260709234631.png>)
+![alt text](<attachment/Pasted image 20260709234631.png>)
 
 ###### 2. 選取表格: ==依照==時間降序排列
 ```mysql
 SELECT * FROM member ORDER BY time DESC;
 ```
-![alt text](<attachment/Pasted image 260709234755.png>)
+![alt text](<attachment/Pasted image 20260709234755.png>)
 
 ###### 3. 選取表格: ==依照==時間降序排列+選三並從二到四
 ```mysql
 SELECT * FROM member ORDER BY time DESC LIMIT 3 OFFSET 1;
 ```
-![alt text](<attachment/Pasted image 260709234826.png>)
+![alt text](<attachment/Pasted image 20260709234826.png>)
 
 ###### 4. 選取表格: ==限制條件==email = "---"
 ```mysql
 SELECT * FROM member WHERE email = "test@test.com";
 ```
-![alt text](<attachment/Pasted image 260709234945.png>)
+![alt text](<attachment/Pasted image 20260709234945.png>)
 ###### 6.選取表格: ==限制條件==email = "---" 並且 密碼="---"
 ```mysql
 SELECT * FROM member WHERE email = "test@test.com" AND password="test";
 ```
-![alt text](<attachment/Pasted image 260709235023.png>)
+![alt text](<attachment/Pasted image 20260709235023.png>)
 ###### 5.選取表格: ==限制條件==email 包含 es
 ```mysql
 SELECT * FROM member WHERE name LIKE "%es%";
 ```
-![alt text](<attachment/Pasted image 260709234956.png>)
+![alt text](<attachment/Pasted image 20260709234956.png>)
 
 ###### 7.更新資料name，==限制條件==email = "---"
 ```mysql
@@ -82,29 +82,29 @@ UPDATE member SET follower_count = 200 WHERE id = 3;
 UPDATE member SET follower_count = 800 WHERE id = 4;
 UPDATE member SET follower_count = 50 WHERE id = 5;
 ```
-![alt text](<attachment/Pasted image 260709234653.png>)
+![alt text](<attachment/Pasted image 20260709234653.png>)
 ###### 2. 幾筆資料
 ```mysql
 SELECT COUNT(*) FROM member;
 ```
-![alt text](<attachment/Pasted image 260709235116.png>)
+![alt text](<attachment/Pasted image 20260709235116.png>)
 ###### 3. 總和(follower_count)
 ```mysql
 SELECT SUM(follower_count) FROM member;
 ```
-![alt text](<attachment/Pasted image 260709235103.png>)
+![alt text](<attachment/Pasted image 20260709235103.png>)
 ###### 3. 平均(follower_count)
 ```mysql
 SELECT AVG(follower_count) FROM member;
 ```
-![alt text](<attachment/Pasted image 260709235141.png>)
+![alt text](<attachment/Pasted image 20260709235141.png>)
 ###### 4. 平均(follower_count)，從==依照==時間降序排列前兩個
 ```mysql
 SELECT AVG(follower_count) FROM (
 SELECT follower_count FROM member ORDER BY follower_count DESC
 LIMIT 2) AS first_two_avg;
 ```
-![alt text](<attachment/Pasted image 260709235211.png>)
+![alt text](<attachment/Pasted image 20260709235211.png>)
 ### task5
 建立另一個表格message，設置FOREIGN KEY。如此，可以從message中的member_id，取得member的資料。
 ###### 1. 建立表格message，並插入資料
@@ -126,14 +126,14 @@ INSERT INTO message (member_id, content, like_count) VALUES
 SELECT message.*, member.name FROM message JOIN member 
 ON message.member_id = member.id;
 ```
-![alt text](<attachment/Pasted image 260709235312.png>)
+![alt text](<attachment/Pasted image 20260709235312.png>)
 ###### 2. 選取表格: message+member.name(sender names)，==限制條件==email = "---"
 ```mysql
 SELECT message.*, member.name FROM message JOIN member 
 ON message.member_id = member.id
 WHERE member.email = "test@test.com";
 ```
-![alt text](<attachment/Pasted image 260709235406.png>)
+![alt text](<attachment/Pasted image 20260709235406.png>)
 ###### 3. 選取表格: avg(like_count)，==限制條件==email = "---"
 ```mysql
 SELECT AVG(message.like_count) FROM message JOIN member 
@@ -141,7 +141,7 @@ ON message.member_id = member.id
 WHERE member.email = "test@test.com";
 ```
 
-![alt text](<attachment/Pasted image 260710000019.png>)
+![alt text](<attachment/Pasted image 20260710000019.png>)
 
 ###### 4. 選取表格: avg(like_count)，分組
 ```mysql
@@ -149,7 +149,7 @@ SELECT member.email, AVG(message.like_count) FROM message JOIN member
 ON message.member_id = member.id
 GROUP BY member.email;
 ```
-![alt text](<attachment/Pasted image 260710000003.png>)
+![alt text](<attachment/Pasted image 20260710000003.png>)
 
 ###### 5. 在CMD裡，執行
 ```
