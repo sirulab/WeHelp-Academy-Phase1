@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navbar">歡迎光臨，請註冊登入系統</div>
+    <section class="type1">
+    <h3>註冊帳號</h3>
+    <form action="/signup" method="post" id="signup_form">
+        <div class="form-bar"><label for="signup_name">姓名</label><input type="text" name="signup_name" id="signup_name"></div>
+        <div class="form-bar"><label for="signup_email">信箱</label><input type="text" name="signup_email" id="signup_email"></div>
+        <div class="form-bar"><label for="signup_password">密碼</label><input type="password" name="signup_password" id="signup_password"></div>
+        <button id="signup_submitbtn" type="submit">註冊</button>
+    </form>
+    </section>
+    <hr>
+    <section class="type1">
+    <h3>登入系統</h3>
+    <form action="/login" method="post" id="login_form">
+        <div class="form-bar"><label for="login_email">信箱</label><input type="text" name="login_email" id="login_email"></div>
+        <div class="form-bar"><label for="login_password">密碼</label><input type="password" name="login_password" id="login_password"></div>
+        <button id="login_submitbtn" type="submit">登入</button>
+    </form>
+    </section>
+    <script>
+        document.getElementById("signup_form").addEventListener('submit',function(event){
+            const signup_name = document.getElementById("signup_name");
+            const signup_email = document.getElementById("signup_email");
+            const signup_password = document.getElementById("signup_password");
+            if(signup_name.value == "" || signup_email.value == "" || signup_password.value == ""){
+                event.preventDefault();
+                alert('請完整填入註冊資料: 姓名、信箱、密碼');
+            }
+        })
+        
+        document.getElementById("login_form").addEventListener('submit',function(event){
+            const login_email = document.getElementById("login_email");
+            const login_password = document.getElementById("login_password");
+            if(login_email.value == "" || login_password.value == ""){
+                event.preventDefault();
+                alert('請填入登入資料: 信箱以及密碼');
+            }
+        })
+        </script>
+</body>
+</html>
