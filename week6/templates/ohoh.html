@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navbar">失敗頁面</div>
+    <section class="type1">
+    <div id="ohoh_msg"></div>
+    </section>
+    <script>
+        let searchString = window.location.search;
+        let msg = "自訂的錯誤訊息";
+        if (searchString !== "") {
+            let splitMsg = searchString.split("=");
+            msg = decodeURIComponent(splitMsg[1]);
+            }
+        const divMsg = document.getElementById("ohoh_msg");
+        divMsg.innerHTML = msg;
+    </script>
+</body>
+</html>
